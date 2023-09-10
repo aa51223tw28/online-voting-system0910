@@ -55,5 +55,19 @@ namespace online_voting_system0910.Controllers
             }
             return RedirectToAction("Index");          
         }
+
+        public IActionResult Delete(int? id)
+        {
+            if (id != null)
+            {
+                VotingItem prod = _Context.VotingItem.FirstOrDefault(p => p.VotingItemId== id);
+                if (prod != null)
+                {
+                    _Context.VotingItem.Remove(prod);
+                    _Context.SaveChanges();
+                }
+            }
+            return RedirectToAction("Index");
+        }
     }
 }
