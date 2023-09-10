@@ -1,0 +1,44 @@
+﻿@model IEnumerable<online_voting_system0910.Models.ViewModel.VotingViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>投票票數清單頁</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            @*<th>
+                @Html.DisplayNameFor(model => model.VotingItemId)
+            </th>*@
+            <th>
+                投票項目名稱
+            </th>
+            <th>
+                投票項目票數
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+          @*  <td>
+                @Html.DisplayFor(modelItem => item.VotingItemId)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.VotingItemName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VotingCount)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
