@@ -1,4 +1,4 @@
-﻿@model online_voting_system0910.Models.VotingRecord
+﻿@model online_voting_system0910.Models.ViewModel.VotingCreateViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -11,11 +11,7 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group" style="display: none;">
-                <label asp-for="VotingRecordId" class="control-label"></label>
-                <input asp-for="VotingRecordId" class="form-control" />
-                <span asp-validation-for="VotingRecordId" class="text-danger"></span>
-            </div>
+            
             <div class="form-group">
                 <label  class="control-label my-3">投票者姓名</label>
                 <input asp-for="Voter" class="form-control my-3" />
@@ -28,7 +24,7 @@
                 {
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" value="@item.VotingItemId" />
+                            <input type="checkbox" value="@item.VotingItemId" name="SelectedVotingItems" />
                             @item.VotingItemName
                         </label>
                     </div>

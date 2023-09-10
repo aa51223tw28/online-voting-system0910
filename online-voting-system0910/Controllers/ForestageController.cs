@@ -18,6 +18,13 @@ namespace online_voting_system0910.Controllers
 
         public IActionResult Index()
         {
+            var viewModel = BuildVotingViewModel();
+            return View(viewModel);
+        }
+
+
+        private List<VotingViewModel> BuildVotingViewModel()
+        {
             var votingRecords = _Context.VotingRecord.ToList();
             var votingItems = _Context.VotingItem.ToList();
 
@@ -30,13 +37,40 @@ namespace online_voting_system0910.Controllers
                                 VotingCount = recordGroup.Sum(r => 1)
                             };
 
-            return View(viewModel);
+            return viewModel.ToList();
         }
+
+
         public IActionResult Create()
         {
             var votingItems = _Context.VotingItem.ToList();
             ViewBag.VotingItems = votingItems;
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(VotingCreateViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                
+                foreach (var votingItemId in viewModel.SelectedVotingItems)
+                {
+                    var votingItemRecord = new VotingRecord
+                    {
+                        Voter = viewModel.Voter,                       
+                        VotingItemId = votingItemId
+                    };
+                    _Context.VotingRecord.Add(votingItemRecord);
+                }
+
+                _Context.SaveChanges();
+
+                return RedirectToAction("Index"); 
+            }
+
+            return RedirectToAction("Index");
+            
         }
     }
 }
