@@ -29,7 +29,13 @@ namespace online_voting_system0910.Controllers
         public IActionResult Create()
         {           
             return View();
-
+        }
+        [HttpPost]
+        public IActionResult Create(VotingItem p)
+        {
+            _Context.VotingItem.Add(p);
+            _Context.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
