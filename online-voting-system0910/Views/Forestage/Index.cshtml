@@ -13,10 +13,10 @@
                 @Html.DisplayNameFor(model => model.VotingItemId)
             </th>*@
             <th>
-                投票項目名稱
+                @Html.DisplayNameFor(model => model.VotingItemName)
             </th>
             <th>
-                投票項目票數
+                @Html.DisplayNameFor(model => model.VotingCount)
             </th>
             <th></th>
         </tr>
@@ -33,11 +33,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.VotingCount)
             </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
+           
         </tr>
 }
     </tbody>
