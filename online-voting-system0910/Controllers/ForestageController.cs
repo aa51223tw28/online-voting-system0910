@@ -32,5 +32,11 @@ namespace online_voting_system0910.Controllers
 
             return View(viewModel);
         }
+        public IActionResult Create()
+        {
+            var votingItems = _Context.VotingItem.ToList();
+            ViewBag.VotingItems = votingItems;
+            return View();
+        }
     }
 }

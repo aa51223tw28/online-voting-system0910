@@ -1,0 +1,51 @@
+﻿@model online_voting_system0910.Models.VotingRecord
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>投票</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group" style="display: none;">
+                <label asp-for="VotingRecordId" class="control-label"></label>
+                <input asp-for="VotingRecordId" class="form-control" />
+                <span asp-validation-for="VotingRecordId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label  class="control-label my-3">投票者姓名</label>
+                <input asp-for="Voter" class="form-control my-3" />
+                <span asp-validation-for="Voter" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">投票選項</label>
+                @foreach (var item in ViewBag.VotingItems)
+                {
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="@item.VotingItemId" />
+                            @item.VotingItemName
+                        </label>
+                    </div>
+                }
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="送出" class="btn btn-primary my-3" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">回投票票數清單頁</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
