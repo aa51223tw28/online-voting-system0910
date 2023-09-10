@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>後台編輯投票項目功能</h1>
+<h1>後台投票清單頁</h1>
 
 <p>
     <a asp-action="Create">新增投票項目</a>
@@ -13,10 +13,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.VotingItemId)
+                投票項目編號
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.VotingItemName)
+                投票項目名稱
             </th>
             <th></th>
         </tr>
@@ -31,9 +31,8 @@
                 @Html.DisplayFor(modelItem => item.VotingItemName)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("修改", "Edit", new { id=item.VotingItemId}) |
+                @Html.ActionLink("刪除", "Delete","Backstage", new { id=item.VotingItemId},new{onclick="return confirm('確定要刪除嗎?')"})
             </td>
         </tr>
 }
